@@ -1,0 +1,148 @@
+\RequirePackage{fix-cm} 
+
+%% Definiere Klasse
+\documentclass[11pt, a4paper,oneside]{scrbook} 	
+
+%% misc
+%\usepackage{cmbright}												% streifenlose computer modern fonts
+\usepackage[T1]{fontenc}											% T1 fonts für gute pdf-Ausgabe
+%\usepackage[ansinew]{inputenc}										% wegen deutschen Umlauten
+\usepackage[automark]{scrpage2}										% Koma Headers
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+% Wechseln durch \begin{otherlanguage}{english}.. \end{otherlanguage}
+
+
+% \usepackage{boxit}	 												% frame handling
+\usepackage{nag}													% warn user on outdated packages
+\usepackage[linktocpage]{hyperref}									% links in pdf, thumbnails
+\usepackage{soul}													% emphasizing text, underlining				
+\usepackage[onehalfspacing]{setspace}								% 1.5, change line spaces by \singlespacing \doublespacing
+
+
+%% Tabellen
+\usepackage{multicol} 												% Mehrfache Zeilen / Spalten
+\usepackage{multirow}												% Mehrfache Zeilen in Tabellen
+\usepackage[margin=10pt,labelfont=bf]{caption}						% Tabellen-Kopf
+\usepackage{hhline}													% horizontale Linien
+\usepackage{longtable}												% über Seitenumbruch hinauslaufende Tabelle
+\usepackage{booktabs}												% dicke Tabellenlinien \toprule
+\usepackage{tabularx}												
+
+%% math, symbols
+\usepackage{amsmath}												% AMS Math like brackets, integrals...
+\usepackage{fixmath}												% big greek letters italic in math mode
+\usepackage{array}													% matrices
+\usepackage{units}		  											% includes nicefrac, nicer fracs for one line, SI-Units
+\usepackage{trfsigns}												% symbole für transformationen
+\usepackage{textcomp}												% einfache Sonderzeichen, z.B. \texteuro
+\usepackage{gensymb}												% correct greek letters in units,\micro instead of \mu
+\usepackage[integrals]{wasysym}										% for integrals like \oiint
+\usepackage{ziffer}													% let"',"' be a valid delimiter in formulaes
+\usepackage{dsfont}													% für andere Mengenzeichen, $\mathds{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$
+
+
+%% graphics
+%\usepackage[activate]{pdfcprot}									% use margin kerning (character protruding) (Opt. Randausgleich)
+\usepackage{microtype}												% character protruding, font expansion - instead of pdfcprot
+\usepackage{graphicx}												% include graphics
+\usepackage{wrapfig} 												% graphics in text
+\usepackage{floatflt}												% graphics/tables in text
+\usepackage{rotating} 												% rotating elements
+\usepackage{listings}												% for programming source code
+\usepackage[svgnames]{xcolor}										% colors for listings
+\usepackage{psfrag}													% Text in .eps Grafiken ersetzen
+
+%% Definiere Layout
+\usepackage[top=2.5cm,left=3.5cm,right=2.5cm,bottom=3cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Allgemeine Definitionen des Dokumentes
+\input{./Hauptdatei/mandaDef}         								
+
+% "input" ersetzt den Text, "include" erstellt neue Seite
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Benutzer Definitionen
+\input{./Hauptdatei/userDef}   										
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% START %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+    % Titelblatt
+	\input{./Titelblatt/titel}	
+	
+	% Leere Seite
+	\newpage 
+    \thispagestyle{empty}
+    \quad 
+    \newpage
+    
+    % Einbinden aller Literatureinträge
+    \nocite{*}														
+    
+%%%%%%%%%%%%%%%%%%%%%% VORSPANN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    % römische Seitennummerierung
+	\pagenumbering{roman}											
+	
+	% Kurzfassung				
+	\include{./0_Vorspann/1_Kurzfassung}								
+	% Abkürzungen
+	\include{./0_Vorspann/2_Abkuerzungen}								
+	% Erklärung
+	\include{./0_Vorspann/3_Erklaerung}
+	
+	% Danksagung (optional)
+	\include{./0_Vorspann/4_Danksagung}									
+%%%%%%%%%%%%%%%%%%%%% INHALTSVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Inhaltsverzeichnis
+	\tableofcontents 
+	
+	% Leere Seite
+	\newpage 
+    \thispagestyle{empty}
+    \quad 
+    \newpage
+    
+%%%%%%%%%%%%%%%%%%% HAUPTTEIL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\pagenumbering{arabic}
+			
+	\include{./1_Einleitung/1}						
+	\include{./2_Theoretische_Grundlagen/2}
+	\include{./3_Stand_der_Forschung/3}
+	\include{./4_Implementierung_des_Plugin/4}
+	\include{./5_Evaluation/5}
+	\include{./6_Fazit_und_Ausblick/6}
+
+%%%%%%%%%%%%%%%%% ANHANG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{appendix}
+		\include{./Anhang/Teila}
+		\include{./Anhang/Teilb}
+		\include{./Anhang/Teilc}
+	\end{appendix}
+
+%%%%%%%%%%%%%%%%% ABBILDUNGSVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\listoffigures
+	\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+	
+%%%%%%%%%%%%%%%%% TABELLENVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\listoftables
+	\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+
+%%%%%%%%%%%%%%%%% LITERATURVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\raggedright													% Literatur im Flattersatz (v.a. wegen URLs)
+	\bibliography{Literatur/Literatur}
+	\bibliographystyle{alphadin}
+	\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+
+\end{document}
