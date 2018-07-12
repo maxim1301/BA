@@ -1,1 +1,48 @@
-\chapter[Implementierung des Plugin]{Implementierung des Plugin} \label{chap:Impl}
+\chapter[Implementierung des Plugin]{Implementierung des Plugin} \label{chap:IMPL}
+
+
+\section{Die Entwicklungsumgebung Unity}
+\label{sec:4_DEU}
+
+Hier werden allgemeine Informationen zu der Entwickungsumgebung Unity nieder geschrieben. Darunter fallen bspw. auch:
+
+\begin{itemize}
+    \item Platformunabhängigkeit
+    \item Struktur der Entwicklungsumgebung (Szenen, Objekte, ...)
+    \item Audio-Mixer
+    \item Native Audio Plugin SDK
+\end{itemize}
+
+
+\section{Umsetzung unter Windows}
+\label{sec:4_UUW}
+
+Kombination einer Skriptsprache (hier C\#, im Unity Editor) sowie native Entwicklung (C++, Native Audio Plugin SDK, Verwendung von Visual Studio)
+
+    \subsection{Erstellung eines Wiedergabesystems}
+    \label{subsec:4_IDS}
+    
+    Nämlich so, dass immer die richtigen Schallquellen (abhängig von der Position des Ohres) auf die jeweiligen Ausgänge gelegt werden.
+    
+    \subsection{Digitale Signalverarbeitung}
+    \label{subsec:4_DSV}
+    
+        \subsubsection{Filterung}
+        \label{subsubsec:4_F}
+        
+        Hochpass und Tiefpass (Linkwitz-Riley 4. Ordnung)
+        
+        \subsubsection{Short Time Fourier Transform}
+        \label{subsubsec:4_STFT}
+        
+        Transformation der Hochpassanteile, Überlagerung im Frequenzbereich.
+    
+        \subsection{Syntheseschritt}
+        \label{subsec:4_SYN}
+
+        Rücktransformation in den Zeitbereich, Überlagerung mit dem tiefrequenten Zeitsignal.
+
+\section{Probleme unter Android}
+\label{sec:4_PUA}
+
+Latenz, Latenz, Latenz. Die Unity Audio Engine ist eben kein Mercedes Benz.

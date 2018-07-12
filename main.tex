@@ -57,7 +57,7 @@
 %% Definiere Layout
 \usepackage[top=2.5cm,left=3.5cm,right=2.5cm,bottom=3cm]{geometry}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Allgemeine Definitionen des Dokumentes
 \input{./Hauptdatei/mandaDef}         								
@@ -98,9 +98,10 @@
 	\include{./0_Vorspann/3_Erklaerung}
 	
 	% Danksagung (optional)
-	\include{./0_Vorspann/4_Danksagung}									
+	\include{./0_Vorspann/4_Danksagung}	
+	
 %%%%%%%%%%%%%%%%%%%%% INHALTSVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%
-	% Inhaltsverzeichnis
+	
 	\tableofcontents 
 	
 	% Leere Seite
@@ -128,17 +129,17 @@
 		\include{./Anhang/Teilc}
 	\end{appendix}
 
-%%%%%%%%%%%%%%%%% ABBILDUNGSVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% ABBILDUNGSVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\listoffigures
 	\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
 	
-%%%%%%%%%%%%%%%%% TABELLENVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% TABELLENVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	\listoftables
 	\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
 
-%%%%%%%%%%%%%%%%% LITERATURVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% LITERATURVERZEICHNIS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\raggedright													% Literatur im Flattersatz (v.a. wegen URLs)
 	\bibliography{Literatur/Literatur}
